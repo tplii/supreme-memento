@@ -1,22 +1,11 @@
-<!doctype html>
-<html ng-app>
-<head>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.js"></script>
-</head>
-<body>
-	<div ng-controller="MyController">
-	<h1 style="color: #019FE6">UTC DT: {{ clock }}</h1>
-	</div>
-	<script type="text/javascript">
-		function MyController($scope, $timeout) {
-			var updateClock = function() {
-				$scope.clock = new Date();
-				$timeout(function() {
-					updateClock();
-				}, 1000);
-			};
-			updateClock();
-		};
-	</script>
-</body>
-</html>
+---
+layout: default
+title: 我的Blog
+---
+<h2>{{ page.title }}</h2>
+<p>最新文章</p>
+<ul>
+　　{% for post in site.posts %}
+　　　　<li>{{ post.date | date_to_string }} <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+　　{% endfor %}
+</ul>
